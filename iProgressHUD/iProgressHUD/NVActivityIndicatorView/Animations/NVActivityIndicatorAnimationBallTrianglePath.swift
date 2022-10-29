@@ -36,7 +36,7 @@ class NVActivityIndicatorAnimationBallTrianglePath: NVActivityIndicatorAnimation
         let x = (layer.bounds.size.width - size.width) / 2
         let y = (layer.bounds.size.height - size.height) / 2
         let duration: CFTimeInterval = 2
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        let timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
 
         // Animation
         let animation = CAKeyframeAnimation(keyPath: "transform")
@@ -76,7 +76,7 @@ class NVActivityIndicatorAnimationBallTrianglePath: NVActivityIndicatorAnimation
         let values = NSMutableArray(capacity: 5)
 
         for rawValue in rawValues {
-            let point = CGPointFromString(translateString(rawValue, deltaX: deltaX, deltaY: deltaY))
+            let point = NSCoder.cgPoint(for: translateString(rawValue, deltaX: deltaX, deltaY: deltaY))
 
             values.add(NSValue(caTransform3D: CATransform3DMakeTranslation(point.x, point.y, 0)))
         }
@@ -87,7 +87,7 @@ class NVActivityIndicatorAnimationBallTrianglePath: NVActivityIndicatorAnimation
         let valueMutableString = NSMutableString(string: valueString)
         let fullDeltaX = 2 * deltaX
         let fullDeltaY = 2 * deltaY
-        var range = NSMakeRange(0, valueMutableString.length)
+        var range = NSRange(location: 0, length: valueMutableString.length)
 
         valueMutableString.replaceOccurrences(of: "hx", with: "\(deltaX)", options: NSString.CompareOptions.caseInsensitive, range: range)
         range.length = valueMutableString.length

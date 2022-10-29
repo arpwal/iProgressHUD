@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 @objc public protocol iProgressHUDDelegete {
     @objc optional func onTouch(view: UIView)
