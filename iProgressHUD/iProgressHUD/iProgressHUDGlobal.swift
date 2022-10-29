@@ -27,11 +27,11 @@ internal extension UIApplication {
 }
 
 public extension UIView {
-    
+
     private struct AssociatedKeys {
-        static var iprogressHud:iProgressHUD?
+        static var iprogressHud: iProgressHUD?
     }
-    
+
     /** Set x Position */
     internal func setX(x: CGFloat) {
         var frame: CGRect = self.frame
@@ -60,7 +60,7 @@ public extension UIView {
         frame.size.height = height
         self.frame = frame
     }
-    
+
     /** Get class of iProgressHUD. Make sure to attach progress first in this view. */
     internal var iprogressHud: iProgressHUD? {
         get {
@@ -72,27 +72,27 @@ public extension UIView {
             }
         }
     }
-    
+
     /** Show the iProgressHUD directly from this view. */
-    public func showProgress() {
+    func showProgress() {
         if iprogressHud == nil {
             print("Failed! iProgressHUD never attached in this view.")
             return
         }
         self.iprogressHud?.show()
     }
-    
+
     /** Stop the iProgressHUD directly from this view. */
-    public func dismissProgress() {
+    func dismissProgress() {
         if iprogressHud == nil {
             print("Failed! iProgressHUD never attached in this view.")
             return
         }
         self.iprogressHud?.dismiss()
     }
-    
+
     /** Update the indicator style of iProgressHUD directly from this view. */
-    public func updateIndicator(style: NVActivityIndicatorType) {
+    func updateIndicator(style: NVActivityIndicatorType) {
         if iprogressHud == nil {
             print("Failed! iProgressHUD never attached in this view.")
             return
@@ -101,9 +101,9 @@ public extension UIView {
         self.iprogressHud?.indicatorView.type = style
         self.iprogressHud?.indicatorView.setUpAnimation()
     }
-    
+
     /** Update the caption of iProgressHUD directly from this view. */
-    public func updateCaption(text: String) {
+    func updateCaption(text: String) {
         if iprogressHud == nil {
             print("Failed! iProgressHUD never attached in this view.")
             return
@@ -113,9 +113,9 @@ public extension UIView {
         let boxCenter = CGPoint(x: (iprogressHud?.boxView.frame.size.width)! / 2, y: (iprogressHud?.boxView.frame.size.height)! / 2)
         iprogressHud?.progressStyleSetting(boxCenter: boxCenter)
     }
-    
+
     /** Update colors of iProgressHUD. Set nil if want not to change. */
-    public func updateColors(modalColor: UIColor?, boxColor: UIColor?, indicatorColor: UIColor?, captionColor: UIColor?) {
+    func updateColors(modalColor: UIColor?, boxColor: UIColor?, indicatorColor: UIColor?, captionColor: UIColor?) {
         if iprogressHud == nil {
             print("Failed! iProgressHUD never attached in this view.")
             return
@@ -124,18 +124,18 @@ public extension UIView {
             iprogressHud?.modalColor = modalColor!
             iprogressHud?.modalView.backgroundColor = modalColor
         }
-        
+
         if boxColor != nil {
             iprogressHud?.boxColor = boxColor!
             iprogressHud?.boxView.backgroundColor = boxColor
         }
-        
+
         if indicatorColor != nil {
             iprogressHud?.indicatorColor = indicatorColor!
             iprogressHud?.indicatorView.color = indicatorColor!
             iprogressHud?.indicatorView.setUpAnimation()
         }
-        
+
         if captionColor != nil {
             iprogressHud?.captionColor = captionColor!
             iprogressHud?.captionView.textColor = captionColor
@@ -144,8 +144,8 @@ public extension UIView {
 }
 
 internal extension iProgressHUD {
-    
-    internal func copy() -> iProgressHUD {
+
+    func copy() -> iProgressHUD {
         let reinit = iProgressHUD()
         reinit.indicatorStyle = self.indicatorStyle
         reinit.iprogressStyle = self.iprogressStyle
